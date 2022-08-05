@@ -40,10 +40,8 @@ const passCar2 = new PassengerCar(2);
 
 const arr = [tractor1, tractor2, sportCar, passCar1, passCar2];
 
-function getCarsWithCountPassengers(arr: Car[], count: number): Car[] {
+function getCarsByCountPassengers(arr: Car[], count: number): Car[] {
     return arr.filter(car => car.getCountPassenger() === count);
 }
 
-console.log(getCarsWithCountPassengers(arr, 2));
-
-
+console.log(getCarsByCountPassengers(arr, 2));
