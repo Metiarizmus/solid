@@ -80,6 +80,6 @@ class Truck1 extends PassengerCar1{
 }
 
 (function () {
-    let a = new Truck1("black", "bmw", "truck", 6);
+    let a = new Truck1("black", "bmw", "truck1", 6);
     a.move();
 })()
