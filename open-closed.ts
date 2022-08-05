@@ -57,20 +57,29 @@ class PassengerCar1 implements Car {
     model: string;
     name: string;
 
+
+    constructor(color: string, model: string, name: string) {
+        this.color = color;
+        this.model = model;
+        this.name = name;
+    }
+
     move(): void {
         console.log(`${this.name} moving...`);
     }
 }
 
-class Truck1 implements Car {
-    color: string;
-    model: string;
-    name: string;
+class Truck1 extends PassengerCar1{
+
     countWheels: number;
 
-
-    move(): void {
-        console.log(`${this.name} moving...`)
+    constructor(color: string, model: string, name: string, countWheels: number) {
+        super(color, model, name);
+        this.countWheels = countWheels;
     }
-
 }
+
+(function () {
+    let a = new Truck1("black", "bmw", "bilaz", 6);
+    a.move();
+})()

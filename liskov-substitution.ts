@@ -2,63 +2,48 @@
 Objects of a superclass should be replaceable with objects of its subclasses without breaking the system.
 */
 
-//bad example
-class Car {
-    public name: string;
 
-    constructor(name: string) {
-        this.name = name;
+abstract class Car {
+
+    private readonly countPassenger: number;
+
+
+    constructor(countPassenger: number) {
+        this.countPassenger = countPassenger;
     }
 
-    public move(): void {
-        console.log(`${this.name} move`);
-    }
-
-    public refuel(): void {
-        console.log(`${this.name} refuel`);
+    getCountPassenger(): number {
+        return this.countPassenger
     }
 }
 
-class ElectricCar extends Car {
-
-    //because this is a electric car. It runs on electricity
-    refuel() {
-        throw new Error('Not implemented')
-    }
-
-    charge(): void {
-        console.log(`${this.name} charge...`)
-    }
-}
-
-(function () {
-    let electricCar: ElectricCar = new ElectricCar("tesla");
-    console.log(electricCar.charge());
-})()
-
-///////////////////////////////////////////////////////////////////////////////////////
-
-//Good example
-interface GasPoweredCar {
-    name: string;
-
-    refuel(): void;
-}
-
-interface ElectricPoweredCar {
-    name: string;
-
-    charge(): void;
-}
-
-class ElectricCar1 implements ElectricPoweredCar {
-
-    name: string;
-
-    charge(): void {
-        console.log(`${this.name} charge...`)
-    }
+class Tractor extends Car {
 
 }
+
+class SportCar extends Car {
+
+}
+
+class PassengerCar extends Car {
+
+}
+
+
+const tractor1 = new Tractor(1);
+const tractor2 = new Tractor(2);
+
+const sportCar = new SportCar(2);
+
+const passCar1 = new PassengerCar(4);
+const passCar2 = new PassengerCar(2);
+
+const arr = [tractor1, tractor2, sportCar, passCar1, passCar2];
+
+function getCarsWithCountPassengers(arr: Car[], count: number): Car[] {
+    return arr.filter(car => car.getCountPassenger() === count);
+}
+
+console.log(getCarsWithCountPassengers(arr, 2));
 
 
